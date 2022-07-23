@@ -11,3 +11,7 @@ def index():
 def documentation():
     print("hello")
     return render_template("docs.html")
+
+@app.route('/name')
+def hello():
+    return ("hello universe")
