@@ -1,0 +1,87 @@
+body{
+    font-family: Arial;
+}
+
+.get_routes {
+        width: 96%;
+        color: rgb(57, 61, 60);
+        background-color: rgb(81, 214, 255);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        padding: 0px 0px 0px 5px; /*top right bottom left*/
+        margin-left: 2%;
+        margin-right: 5px;
+        border: 2px solid rgb(55, 157, 189);
+        margin-top: 20px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+}
+.active, .get_routes:hover{
+    background-color: rgb(65, 186, 223);
+}
+
+.post_routes {
+    width: 96%;
+    color: rgb(57, 61, 60);
+    background-color: rgb(123, 255, 123);
+    padding: 0px 0px 0px 5px; /*top right bottom left*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    margin-left: 2%;
+    margin-right: 5px;
+    border: 2px solid rgb(94, 199, 94);
+    margin-top: 20px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.post_routes:hover{
+background-color: rgb(104, 226, 104);
+}
+
+.delete_routes {
+    width: 96%;
+    color: rgb(57, 61, 60);
+    background-color: rgb(255, 123, 123);
+    padding: 0px 0px 0px 5px; /*top right bottom left*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    margin-left: 2%;
+    margin-right: 5px;
+    border: 2px solid rgb(199, 94, 94);
+    margin-top: 20px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.delete_routes:hover{
+background-color: rgb(226, 104, 104);
+}
+
+.put_routes {
+    width: 96%;
+    color: rgb(57, 61, 60);
+    background-color: rgb(246, 255, 123);
+    padding: 0px 0px 0px 5px; /*top right bottom left*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    margin-left: 2%;
+    margin-right: 5px;
+    border: 2px solid rgb(188, 199, 94);
+    margin-top: 20px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.put_routes:hover{
+background-color: rgb(218, 226, 104);
+}
+
+.content {
+    margin-left: 2%;
+    padding-left: 10px;
+    width: 92.8%;
+    border: 2px solid grey;
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #f1f1f1;
+  }

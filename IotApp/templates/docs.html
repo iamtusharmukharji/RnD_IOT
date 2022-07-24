@@ -4,10 +4,86 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title>API Docs - OPEN IOT</title>
 </head>
 <body>
-    <h1 style="margin-left:40%; font-family: Arial, Helvetica, sans-serif;color: rgb(10, 198, 245);"><u>OPEN IOT</u></h1>
-    <h3 style="margin-left: 1%;font-family:Courier, monospace;">API Documentation for RnD IOT</h3>
+    <img src="{{url_for('static',filename = 'logo.png')}}" alt="Open IOT" style=" width: 15%;height: auto; margin-left: 5%;">
+    <h3 style="margin-left: 35%;font-family:Courier, monospace;">API Documentation for RnD IOT</h3>
+    <h4>Base URL: https://www.pythonanywhere.openiot.com</h4>
+
+
+    <button type = "button" class = "post_routes">
+        <h3 style="float: left;">POST</h3>
+        <h4 style="float: left;margin-left:32%;">API for enrolling a new NODE MCU device</h4> 
+        <i style="float: right; font-size: 25px;margin: 20px 30px;cursor: pointer;z-index: 1;" onclick ="expand_div('post_routes',this)" class="fa fa-plus"></i>
+    </button>
+    <div class="content">
+        <p>
+            <b>This API should be requested from a device</b><br><br>
+            <b> Route:</b> /enrolldevice/ <br><br>
+            Payload should be a JSON Body <br><br>
+            <b>Payload Schema:</b>
+                <br> &emsp;{
+                   <br> &emsp;&emsp;"chip_id": string,
+                    <br> &emsp;&emsp;"location": string,
+                    <br> &emsp;&emsp;"description": string <br>
+                    &emsp;}
+            
+        </p>    
+    </div>
+
+    <button type = "button" class = "get_routes">
+        <h3 style="float: left;">GET</h3>
+        <h4 style="float: left;margin-left:32%;">API for getting device info</h4> 
+        <i style="float: right; font-size: 25px;margin: 20px 30px; cursor: pointer;z-index: 1;" onclick ="expand_div('get_routes',this)" class="fa fa-plus"></i>
+    </button>
+    <div class="content">
+        <p>
+            <b> Route:</b> /device/?id=2 <br><br>
+            <b>Sample Response </b> 200<br>
+            &emsp; {<br>
+                &emsp;&emsp;"device_data": {<br>
+                    &emsp;&emsp;&emsp;"chip_id": "AX0102",<br>
+                    &emsp;&emsp;&emsp;"description": "Lorem Ipsum",<br>
+                    &emsp;&emsp;&emsp;"enrolled_at": "Sun, 24 Jul 2022 00:00:00 GMT",<br>
+                    &emsp;&emsp;&emsp;"id": 2,<br>
+                    &emsp;&emsp;&emsp;"is_active": 1,<br>
+                    &emsp;&emsp;&emsp;"location": "Varanasi"<br>
+                &emsp;&emsp;},<br>
+                &emsp;&emsp;"status": "ok"<br>
+            &emsp;}
+            
+        </p>    
+    </div>
+    
+    
+    
+    
+
+    <script>
+
+        function expand_div(div_class,icon_class){
+        
+            icon_class.classList.toggle("fa-minus");
+
+            var coll = document.getElementsByClassName(div_class);
+            var i;
+            function col_func(coll) {
+                coll.classList.toggle("active");
+                var content = coll.nextElementSibling;
+                if (content.style.maxHeight){
+                  content.style.maxHeight = null;
+                } else {
+                  content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            }
+        for (i = 0; i < coll.length; i++) {
+          col_func(coll[i]);
+        }}
+        </script>
 </body>
 </html>
