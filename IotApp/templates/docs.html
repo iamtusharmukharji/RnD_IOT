@@ -16,10 +16,10 @@
     <h4>Base URL: https://www.pythonanywhere.openiot.com</h4>
 
 
-    <button type = "button" class = "post_routes">
+    <button id =1 type = "button" class = "post_routes">
         <h3 style="float: left;">POST</h3>
         <h4 style="float: left;margin-left:32%;">API for enrolling a new NODE MCU device</h4> 
-        <i style="float: right; font-size: 25px;margin: 20px 30px;cursor: pointer;z-index: 1;" onclick ="expand_div('post_routes',this)" class="fa fa-plus"></i>
+        <i id=1 style="float: right; font-size: 25px;margin: 20px 30px;cursor: pointer;z-index: 1;" onclick ="expand_div('post_routes',this)" class="fa fa-plus"></i>
     </button>
     <div class="content">
         <p>
@@ -36,10 +36,10 @@
         </p>    
     </div>
 
-    <button type = "button" class = "get_routes">
+    <button id=2 type = "button" class = "get_routes">
         <h3 style="float: left;">GET</h3>
         <h4 style="float: left;margin-left:32%;">API for getting device info</h4> 
-        <i style="float: right; font-size: 25px;margin: 20px 30px; cursor: pointer;z-index: 1;" onclick ="expand_div('get_routes',this)" class="fa fa-plus"></i>
+        <i  id = 2 style="float: right; font-size: 25px;margin: 20px 30px; cursor: pointer;z-index: 1;" onclick ="expand_div('get_routes',this)" class="fa fa-plus"></i>
     </button>
     <div class="content">
         <p>
@@ -60,6 +60,22 @@
         </p>    
     </div>
     
+    <button id = 3 type = "button" class = "get_routes">
+        <h3 style="float: left;">GET</h3>
+        <h4 style="float: left;margin-left:32%;">API for checking existance of device on server</h4> 
+        <i id = 3 style="float: right; font-size: 25px;margin: 20px 30px; cursor: pointer;z-index: 1;" onclick ="expand_div('get_routes',this)" class="fa fa-plus"></i>
+    </button>
+    <div class="content">
+        <p>
+            <b>This API should be requested from a device</b><br><br>
+            <b> Route:</b> /devicestatus/?chip_id=AX0101 <br><br>
+            <b>Sample Response </b> 200<br>
+            &emsp; {<br>
+                    &emsp;&emsp;"id":1 <br>
+            &emsp;}
+            
+        </p>    
+    </div>
     
     
     
@@ -69,8 +85,10 @@
         function expand_div(div_class,icon_class){
         
             icon_class.classList.toggle("fa-minus");
-
+            var id = icon_class.id
+            console.log(id)
             var coll = document.getElementsByClassName(div_class);
+            console.log(coll)
             var i;
             function col_func(coll) {
                 coll.classList.toggle("active");
@@ -82,7 +100,12 @@
                 } 
             }
         for (i = 0; i < coll.length; i++) {
-          col_func(coll[i]);
+
+            if (coll[i].id == id)
+            {
+                col_func(coll[i]);
+            }
+          
         }}
         </script>
 </body>
