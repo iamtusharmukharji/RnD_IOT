@@ -3,15 +3,21 @@ from IotApp import app
 from . import models
 from . import schemas
 from sqlalchemy.exc import DBAPIError
-from sqlalchemy.orm import Session
-from flask_pydantic import validate
 from flask import render_template, url_for, redirect, request, abort
+
+@app.route('/fetchdevice/')
+def getdevicedata(db=models.Session()):
+    data = db.query(models.Device).all()
+    db.close()
+    data = [i._tojson() for i in data]
+    res = {}
+    res['data'] = data
+    return res, 200
 
 
 @app.route('/')
 def index():
     return redirect(url_for('documentation'))
-
 
 @app.route("/docs")
 def documentation():
@@ -81,5 +87,24 @@ def device_info(
 
     except Exception as e:
         err = str(e)
+        print(err)
         return {"status":"bad request"}, 406
 
+# For getting is_exist from device
+@app.route("/devicestatus/")
+def device_status(
+    db = models.Session()
+):
+    try:
+        chip_id = request.args.get("chip_id")
+        db_device = db.query(models.Device).filter(models.Device.chip_id == chip_id).first()
+        db.close()
+        if db_device is None:
+            return {"status":"not found"}, 404
+        else:
+            return {"id":db_device.id}, 200
+
+    except Exception as e:
+        err = str(e)
+        print(err)
+        return {"status":"bad request"}, 400
