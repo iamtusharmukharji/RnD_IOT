@@ -96,6 +96,7 @@ def device_info(
 
 # For getting is_exist from device
 @app.route("/devicestatus/")
+@cross_origin()
 def device_status(
     db = models.Session()
 ):
