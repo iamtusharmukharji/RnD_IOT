@@ -104,9 +104,9 @@ def device_status(
         db_device = db.query(models.Device).filter(models.Device.chip_id == chip_id).first()
         db.close()
         if db_device is None:
-            return "not found", 404
+            return {"status":"not found"}, 404
         else:
-            return "JWT eyxbsksdjknksd", 200
+            return {"id":db_device.id}, 200
 
     except Exception as e:
         err = str(e)
