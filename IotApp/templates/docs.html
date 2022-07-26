@@ -77,7 +77,38 @@
         </p>    
     </div>
     
-    
+    <button id =4 type = "button" class = "post_routes">
+        <h3 style="float: left;">POST</h3>
+        <h4 style="float: left;margin-left:32%;">API for sending temperature and humidity data</h4> 
+        <i id=4 style="float: right; font-size: 25px;margin: 20px 30px;cursor: pointer;z-index: 1;" onclick ="expand_div('post_routes',this)" class="fa fa-plus"></i>
+    </button>
+    <div class="content">
+        <p>
+            <b>This API should be requested from a device</b><br><br>
+            <b> Route:</b> /update/dht/<br><br>
+            Payload should be a JSON Body <br><br>
+            <b>Payload Schema:</b>
+                <br> &emsp;{
+                   <br> &emsp;&emsp;"chip_id": string,
+                    <br> &emsp;&emsp;"temperature": integer,
+                    <br> &emsp;&emsp;"humidity": integer <br>
+                    &emsp;}
+            
+        </p>    
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
     <script>

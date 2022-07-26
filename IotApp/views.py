@@ -113,3 +113,55 @@ def device_status(
         err = str(e)
         print(err)
         return {"status":"bad request"}, 400
+
+# This will create dht11 table from post method and receiving data from device.
+@app.route("/update/dht/", methods = ['POST'])
+def update_dht(
+    db = models.Session()
+):
+    payload_data = request.get_json()
+    db_device_id = db.query(models.Device).filter(models.Device.chip_id ==payload_data['chip_id']).first()
+   
+    if db_device_id is None:
+        db.close()
+        return {'message':'data is not found'},404
+
+    #db_device_id = db_device_id.id
+    new_temp = payload_data['temperature']
+    new_humid = payload_data['humidity']
+    curr_update = datetime.now()
+
+    new_dht_data = models.DHT(device_id = db_device_id.id,
+                                temperature =new_temp,
+                                humidity = new_humid,
+                                last_update = curr_update)
+    
+    db.add(new_dht_data)
+    db.commit()
+    db.refresh(new_dht_data)
+    db.close()
+
+    return {'message':'new resource has been created'},201
+
+
+# this is creating for fetching data from dht11 from get method
+@app.route("/fetch/dht/")
+def fetch_dht(
+        db = models.Session()
+):
+
+
+    db_dht_data = db.query(models.DHT).all()
+    if db_dht_data ==[]:
+        db.close()
+        return {'message':'no data found'}, 404
+
+    db_dht_data = [obj._tojson() for obj in db_dht_data]
+    db.close()
+    response = {}
+
+    response['data'] = db_dht_data
+    return response, 200
+    
+        
+    

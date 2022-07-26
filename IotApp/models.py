@@ -31,6 +31,15 @@ class Device(Base,JsonModel):
     enrolled_at = Column(Date)
 
 
+class DHT(Base,JsonModel):
+
+    __tablename__ = 'dht'
+
+    id = Column(Integer,primary_key = True)
+    device_id = Column(Integer)
+    temperature = Column(Integer)
+    humidity = Column(Integer)
+    last_update = Column(Date)
 
 
     
