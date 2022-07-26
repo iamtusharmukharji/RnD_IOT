@@ -151,7 +151,7 @@ def fetch_dht(
 ):
 
 
-    db_dht_data = db.query(models.DHT).all()
+    db_dht_data = db.query(models.DHT).order_by(models.DHT.last_update).all()
     if db_dht_data ==[]:
         db.close()
         return {'message':'no data found'}, 404

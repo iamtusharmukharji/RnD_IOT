@@ -8,4 +8,4 @@ if __name__=="__main__":
         models.Base.metadata.create_all(models.engine)
     
     # not for production
-    app.run(host="192.168.18.229",debug=True)
+    app.run(debug=True)

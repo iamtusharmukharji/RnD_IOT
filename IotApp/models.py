@@ -1,6 +1,6 @@
 from secrets import choice
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Date, Integer, String
+from sqlalchemy import Column, Date, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref, sessionmaker
 
@@ -49,7 +49,7 @@ class DHT(Base,JsonModel):
     device_id = Column(Integer)
     temperature = Column(Integer)
     humidity = Column(Integer)
-    last_update = Column(Date)
+    last_update = Column(DateTime)
 
     def __init__(self, device_id, temperature, humidity, last_update):
     
