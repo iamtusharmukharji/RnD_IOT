@@ -1,3 +1,4 @@
+from secrets import choice
 from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy import Column, Date, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -30,6 +31,15 @@ class Device(Base,JsonModel):
     is_active = Column(Integer)
     enrolled_at = Column(Date)
 
+    def __init__(self, chip_id, location, description, is_active, enrolled_at):
+
+        self.chip_id = chip_id
+        self.location = location
+        self.description = description
+        self.is_active = is_active
+        self.enrolled_at = enrolled_at
+
+
 
 class DHT(Base,JsonModel):
 
@@ -41,5 +51,10 @@ class DHT(Base,JsonModel):
     humidity = Column(Integer)
     last_update = Column(Date)
 
-
+    def __init__(self, device_id, temperature, humidity, last_update):
+    
+        self.device_id = device_id
+        self.temperature = temperature
+        self.humidity = humidity
+        self.last_update = last_update
     
