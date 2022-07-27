@@ -35,43 +35,43 @@ def documentation():
 def enroll_device(
                   db=models.Session()
                   ):
-    #try:
+    try:
         
-    data = request.json
-    print(data)
-    chip_id = data["chip_id"]
-    db_device = db.query(models.Device).filter(models.Device.chip_id == chip_id).first()
-    if db_device is None:
-        
-        new_device = models.Device(
-                                chip_id = chip_id,
-                                location = data["location"],
-                                description = data["description"],
-                                enrolled_at = datetime.now(),
-                                is_active = 1
-                            )
-        
-        db.add(new_device)
-        try:
-            db.commit()
-            db.refresh(new_device)
-        except DBAPIError:
-            db.rollback()
-            abort(400, "bad request")
-        
-        db.close()
-    else:
-        db.close()
-        return {"status":"already exist", "id":db_device.id},208
-
-    response = {} 
+        data = request.json
+        print(data)
+        chip_id = data["chip_id"]
+        db_device = db.query(models.Device).filter(models.Device.chip_id == chip_id).first()
+        if db_device is None:
+            
+            new_device = models.Device(
+                                    chip_id = chip_id,
+                                    location = data["location"],
+                                    description = data["description"],
+                                    enrolled_at = datetime.now(),
+                                    is_active = 1
+                                )
+            
+            db.add(new_device)
+            try:
+                db.commit()
+                db.refresh(new_device)
+            except DBAPIError:
+                db.rollback()
+                abort(400, "bad request")
+            
+            db.close()
+        else:
+            db.close()
+            return {"status":"already exist", "id":db_device.id},208
     
-    response['data'] = new_device._tojson()
-    return response,201
+        response = {} 
+        
+        response['data'] = new_device._tojson()
+        return response,201
 
-    '''except Exception as e:
+    except Exception as e:
         err = str(e)
-        abort(406, err)'''
+        abort(406, err)
 
 # For getting the device info by device id
 @app.route("/device/")
