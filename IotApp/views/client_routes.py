@@ -17,6 +17,11 @@ def documentation():
     print("hello")
     return render_template("docs.html")
 
+@app.route("/control/rgb/")
+def rgbUI():
+    print("hello")
+    return render_template("home.html")
+
 # For getting all enrolled devices
 @app.route('/fetchall/device/')
 def getdevicedata(db=models.Session()):
