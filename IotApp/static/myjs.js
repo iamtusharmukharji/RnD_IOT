@@ -6,10 +6,10 @@ function rgb(ev){
         var b = 0;
 
     }else{
-    const color = ev.target.value
-    var r = parseInt(color.substr(1,2), 16)
-    var g = parseInt(color.substr(3,2), 16)
-    var b = parseInt(color.substr(5,2), 16)
+    const color = ev.target.value;
+    var r = parseInt(color.substr(1,2), 16)+45;
+    var g = parseInt(color.substr(3,2), 16)+45;
+    var b = parseInt(color.substr(5,2), 16)+45;
     var rgb = 1;
     };
     
@@ -46,14 +46,15 @@ function fetch_dht(){
 .catch(err => { throw err });
 
 }
-var gs=10;
+var gs=5;
 var gi =0;
 function printData(data){
     var data = data['data'];
+    document.getElementById('para').innerHTML=" ";
     var i = 0;
     for (i=gi;i<=gs;i++) {
     document.getElementById('para').innerHTML += JSON.stringify(data[i])+"\n"+'\n';
 }
 gi = gs+1
-gs+=10
+gs+=5
 }

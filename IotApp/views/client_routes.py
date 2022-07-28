@@ -80,27 +80,26 @@ def update_rgb(
     db=models.Session()
 ): 
     payload = request.json
-    db_rgb = db.query(models.RGB).filter(models.RGB.device_id==payload['device_id']).first()
+    #db_rgb = db.query(models.RGB).filter(models.RGB.device_id==payload['device_id']).first()
     
-    if db_rgb is None:
-        new_rgb = models.RGB(
-                                device_id = payload['device_id'],
-                                red = payload['red'],
-                                green = payload['green'],
-                                blue = payload['blue'],
-                                is_on = payload['on'],
-                                last_update = datetime.now()
-                            )
-        db.add(new_rgb)
-        db.commit()
-        db.refresh(new_rgb)
-        db.close()
-
-        res={}
-        res['data'] = new_rgb._tojson()
-        return res,201
+    #if db_rgb is None:
+    new_rgb = models.RGB(
+                            device_id = payload['device_id'],
+                            red = payload['red'],
+                            green = payload['green'],
+                            blue = payload['blue'],
+                            is_on = payload['on'],
+                            last_update = datetime.now()
+                        )
+    db.add(new_rgb)
+    db.commit()
+    db.refresh(new_rgb)
+    db.close()
+    res={}
+    res['data'] = new_rgb._tojson()
+    return res,201
     
-    else:
+    '''else:
         db_rgb.red = payload['red']
         db_rgb.green = payload['green']
         db_rgb.blue = payload['blue']
@@ -114,7 +113,7 @@ def update_rgb(
     
         res={}
         res['data'] = db_rgb._tojson()
-        return res,201
+        return res,201'''
     
     
     

@@ -111,7 +111,7 @@ def fetch_rgb(
     db_device_id = db.query(models.Device).filter(models.Device.chip_id == chip_id).first()
     db_device_id = db_device_id.id
     
-    db_rgb = db.query(models.RGB).filter(models.RGB.device_id == db_device_id).first()
+    db_rgb = db.query(models.RGB).filter(models.RGB.device_id == db_device_id).order_by(models.RGB.last_update.desc()).first()
     print(db_rgb)
     res={}
     if db_rgb.is_on == 0:
